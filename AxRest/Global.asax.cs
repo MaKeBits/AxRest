@@ -1,5 +1,7 @@
 ﻿using System;
+using AxRest.AddressState.Axapta;
 using AxRest.AddressState.ServiceInterface;
+using AxRest.AddressState.ServiceModel;
 using Funq;
 using ServiceStack.WebHost.Endpoints;
 
@@ -11,7 +13,12 @@ namespace AxRest
 
         public override void Configure(Container container)
         {
-            throw new NotImplementedException();
+            container.Register<DAL>(new DAL());
+
+            //Register user-defined REST-ful routes         
+        Routes
+          .Add<Address>("/address")
+          .Add<Address>("/address/{Id}");
         }
     }
     public class Global : System.Web.HttpApplication

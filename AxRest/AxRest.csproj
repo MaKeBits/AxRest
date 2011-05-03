@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ServiceStack">
       <HintPath>..\packages\ServiceStack.2.9\lib\ServiceStack.dll</HintPath>
     </Reference>
@@ -77,16 +78,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\ServiceStackFramework.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AxRest.AddressState.Axapta\AxRest.AddressState.Axapta.csproj">
+      <Project>{50C64419-9298-401D-B9ED-314013D68A6A}</Project>
+      <Name>AxRest.AddressState.Axapta</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AxRest.AddressState.ServiceInterface\AxRest.AddressState.ServiceInterface.csproj">
       <Project>{27D0F405-4CD2-4D8F-98A4-0930E7FDCCDD}</Project>
       <Name>AxRest.AddressState.ServiceInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxRest.AddressState.ServiceModel\AxRest.AddressState.ServiceModel.csproj">
+      <Project>{B7271D2C-F14D-4B4D-9CBE-A19D4E664FD0}</Project>
+      <Name>AxRest.AddressState.ServiceModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

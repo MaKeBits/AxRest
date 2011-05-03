@@ -8,14 +8,15 @@ using AxRest.AddressState.ServiceModel;
 using AxRest.AddressState.Axapta;
 
 namespace AxRest.AddressState.ServiceInterface
-{
-  
+{  
     public class AddressService : RestServiceBase<Address>
     {
+        public DAL _dal { get; set; } //Injected by IOC
+
         public override object OnGet(Address request)
         {
-            DAL dal = new DAL();
-            return dal.getListOfAdresses();
+            object addresses = _dal.getListOfAdresses();
+            return addresses;
         }
 
         public override object OnPost(Address request)

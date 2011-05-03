@@ -61,7 +61,9 @@ namespace AxRest.AddressState.Axapta
                         {
                             Address address = new Address();
                             address.Name = fieldName;
-                            address.Id = Int16.Parse(fieldStateId);
+                            Int16 id;
+                            bool result = Int16.TryParse(fieldStateId, out id);
+                            address.Id = id;
                             addresses.Add(address);
                         }
 
