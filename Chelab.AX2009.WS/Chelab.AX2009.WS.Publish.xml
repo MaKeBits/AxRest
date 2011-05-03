@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="http://localhost/MyWebServices" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="localhost" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/Chelab.AX2009.BC.dll" publishTime="04/05/2011 10:18:48" />
+    <file relUrl="bin/Chelab.AX2009.BC.pdb" publishTime="04/05/2011 10:18:48" />
+    <file relUrl="Web.config" publishTime="04/05/2011 10:18:41" />
+    <file relUrl="bin/Chelab.AX2009.Configuration.dll" publishTime="04/05/2011 10:18:47" />
+    <file relUrl="bin/Chelab.AX2009.WS.dll" publishTime="04/20/2011 11:01:08" />
+    <file relUrl="bin/Chelab.AX2009.Configuration.pdb" publishTime="04/05/2011 10:18:47" />
+    <file relUrl="LabX.asmx" publishTime="02/16/2011 17:13:27" />
+    <file relUrl="MyWS.asmx" publishTime="04/20/2011 11:00:56" />
+    <file relUrl="bin/Chelab.AX2009.WS.pdb" publishTime="04/20/2011 11:01:08" />
+  </publishProfile>
+</publishData>

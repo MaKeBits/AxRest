@@ -1,0 +1,85 @@
+﻿/*GridViewCSS Soft Grey Style*/
+.GridViewStyle
+{
+    font-family: Arial, Sans-Serif;
+    font-size:small;
+    table-layout: auto;
+    border-collapse: collapse;
+    border:#91a7b4 1px solid;
+}
+/*Header and Pager styles*/
+.HeaderStyle, .PagerStyle /*Common Styles*/
+{
+    background-image: url(Images/YahooSprite.gif);
+    background-position:top;
+    background-repeat:repeat-x;
+    background-color:#d1dbe0;
+}
+.HeaderStyle th
+{
+    padding: 5px;
+    color: #16387c;
+}
+.HeaderStyle a
+{
+    text-decoration:none;
+    color:#16387c;
+    display:block;
+    text-align:left;
+    font-weight:normal;
+}
+.PagerStyle table
+{
+    text-align:center;
+    margin:auto;
+}
+.PagerStyle table td
+{
+    border:0px;
+    padding:5px;
+}
+.PagerStyle td
+{
+    border-top: #91a7b4 1px solid;
+}
+.PagerStyle a
+{
+    color:#16387c;
+    text-decoration:none;
+    padding:2px 10px 2px 10px;
+    border-top:solid 1px #fff;
+    border-right:solid 1px #91a7b4;
+    border-bottom:solid 1px #91a7b4;
+    border-left:solid 1px #fff;
+}
+.PagerStyle span
+{
+    font-weight:bold;
+    color:#16387c;
+    text-decoration:none;
+    padding:2px 10px 2px 10px;
+}
+/*RowStyles*/
+.RowStyle td, .AltRowStyle td, .SelectedRowStyle td, .EditRowStyle td /*Common Styles*/
+{
+    padding: 5px;
+    border-right: solid 1px #91a7b4;
+}
+.RowStyle td
+{
+    background-color: #f1f5f6;
+}
+.AltRowStyle td
+{
+    background-color: #9ab2ca;
+	background-image: url(Images/YahooSprite.gif);
+    background-position:0 -80px;
+    background-repeat:repeat-x;
+}
+.SelectedRowStyle td
+{
+    background-color: #fcb814;
+	background-image: url(Images/YahooSprite.gif);
+    background-position:center;
+    background-repeat:repeat-x;
+}

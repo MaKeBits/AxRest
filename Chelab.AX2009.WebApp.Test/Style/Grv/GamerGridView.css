@@ -1,0 +1,105 @@
+﻿/*GridViewCSS Gamer Style*/
+.GridViewStyle
+{
+    font-family: Arial, Sans-Serif;
+    font-size:small;
+    table-layout: auto;
+    border-collapse: collapse;
+    border: #1d1d1d 1px solid;
+}
+/*Header and Pager styles*/
+.HeaderStyle
+{
+    background-image: url(Images/HeaderGamer_left.jpg);
+    background-position:left;
+    background-repeat:repeat-x;
+    height:30px;
+}
+.PagerStyle
+{
+    background-image: url(Images/PagerGamer.jpg);
+    background-position:bottom;
+    background-repeat:repeat-x;
+	background-color:#000;
+}
+.HeaderStyle th
+{
+    padding: 0px;
+    color: #ffffff;
+}
+.HeaderStyle a:link, .HeaderStyle a:visited
+{
+    text-decoration:none;
+    color:#ffffff;
+    display:block;
+    text-align:left;
+    font-weight:normal;
+    border-left:solid 1px #666666;
+    border-right:solid 1px #1d1d1d;
+    padding-top:25px;
+    padding-bottom:9px;
+    padding-right:5px;
+    padding-left:5px;
+    background-image: url(Images/HeaderGamer.jpg);
+    background-position:top;
+    background-repeat:repeat-x;
+}
+.HeaderStyle a:hover
+{
+    background-image: url(Images/HeaderGamer_Hover.jpg);
+    background-position:top;
+    background-repeat:repeat-x;
+}
+.PagerStyle table
+{
+    text-align:center;
+    margin:auto;
+}
+.PagerStyle table td
+{
+    border:0px;
+    padding:5px;/*padding around pager numbers */
+}
+.PagerStyle td
+{
+    border-top: #1d1d1d 1px solid;/*top border of pager*/
+    height:40px;
+}
+.PagerStyle a
+{
+    color:#ffffff;
+    text-decoration:none;
+    padding:2px 10px 2px 10px;
+    /*border around pager numbers*/
+    border-top:solid 1px #777777;
+    border-right:solid 1px #333333;
+    border-bottom:solid 1px #333333;
+    border-left:solid 1px #777777;
+}
+.PagerStyle span
+{
+    font-weight:bold;
+    color:#FFFFFF;
+    text-decoration:none;
+    padding:2px 10px 2px 10px;
+}
+/*RowStyles*/
+.RowStyle td, .AltRowStyle td, .SelectedRowStyle td, .EditRowStyle td /*Common Styles*/
+{
+    padding: 5px;
+    border-right: solid 1px #1d1d1d;
+}
+.RowStyle td
+{
+    background-color: #333333;
+    color: #ffffff;
+}
+.AltRowStyle td
+{
+    background-color: #1d1d1d;
+    color:#ffffff;
+}
+.SelectedRowStyle td
+{
+    background-color: #ffff66;
+}
