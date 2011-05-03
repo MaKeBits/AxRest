@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Dynamics.BusinessConnectorNet;
 
-namespace getResultTable
+namespace CallAxMethod
 {
     class Program
     {     

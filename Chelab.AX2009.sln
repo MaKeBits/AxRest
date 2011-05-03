@@ -9,13 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chelab.AX2009.WebApp.Test",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chelab.AX2009.WS", "Chelab.AX2009.WS\Chelab.AX2009.WS.csproj", "{B4923973-B758-4F25-861D-5B1DAC5846CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Read", "CRUD\Read.csproj", "{C3005B2A-A0F9-46C2-8875-C1810BD191E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxQuery", "CRUD\AxQuery.csproj", "{C3005B2A-A0F9-46C2-8875-C1810BD191E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{160C70F5-18D0-487A-AE92-250566FDBEB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadResultTable", "ReadResultTable\ReadResultTable.csproj", "{68215EE4-22C2-4936-B384-7B9FC2E5C847}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "getResultTable", "getResultTable\getResultTable.csproj", "{3B1D8A29-2AC6-40A2-89FB-D0A0D8185E67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallAxMethod", "getResultTable\CallAxMethod.csproj", "{3B1D8A29-2AC6-40A2-89FB-D0A0D8185E67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

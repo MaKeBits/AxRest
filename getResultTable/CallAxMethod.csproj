@@ -8,7 +8,7 @@
     <ProjectGuid>{3B1D8A29-2AC6-40A2-89FB-D0A0D8185E67}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>getResultTable</RootNamespace>
+    <RootNamespace>CallAxMethod</RootNamespace>
     <AssemblyName>getResultTable</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>

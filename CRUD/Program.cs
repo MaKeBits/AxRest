@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Dynamics.BusinessConnectorNet;
 
-namespace CRUD
+namespace AxQuery
 {
-    class Read
+    class Program
     {
         static void Main(string[] args)
         {
