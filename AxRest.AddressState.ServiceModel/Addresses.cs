@@ -5,13 +5,9 @@ using System.Text;
 
 namespace AxRest.AddressState.ServiceModel
 {
-    public class Addresses
+    public class Addresses : List<Address>
     {
-        private List<Address> _addresses;
-
-        public Addresses()
-        {
-            _addresses = new List<Address>();
-        }
+        public Addresses() { }
+        public Addresses(IEnumerable<Address> collection) : base(collection) { }
     }
 }

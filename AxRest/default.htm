@@ -1,15 +1,159 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
+<head>
     <title>Address Demo</title>
-   
-  </head>
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="jquery.form.js"></script>
+    <script type="text/javascript">
+        $(function () {
 
-  <body>
+            $.ajaxSetup({ cache: false });
 
-  
+            var restLog = function (method, url) {
+                if (url.indexOf('?format') == -1) url += '?format=json';
+                if (method == "GET") url = '<a href="' + url + '" target="_blank">' + url + '</a>';
+                $("#restlog").prepend("<div><b class='ib'>" + method + "</b><i>" + url + "</i></div>");
+            }
 
-  </body>
+            var allGenres = [];
 
+            var refreshExistingMovies = function () {
+                var moviesUrl = "movies", jqFilter = $("SELECT[name=genres]"), filterGenre = jqFilter.val();
+                if (filterGenre) moviesUrl += "/genres/" + filterGenre;
+
+                restLog("GET", moviesUrl);
+                $.getJSON(moviesUrl, function (r) {
+
+                    var html = "";
+                    for (var i = 0; i < r.Movies.length; i++) {
+                        var movie = r.Movies[i];
+                        html += "<dd id='" + movie.Id + "'>"
+                                 + "<label class='ib'>" + movie.Title + "</label>"
+                                 + "<span class='ib lnk-update'>update</span>"
+                                 + "<span class='ib lnk-delete'>delete</span>"
+                        "</dd>";
+
+                        $.each(movie.Genres, function (i, genre) {
+                            if ($.inArray(genre, allGenres) == -1) allGenres.push(genre);
+                        });
+                        var genreHtml = '<option class="first" value="">[ All Genres ]</option>';
+                        $.each(allGenres, function (i, genre) {
+                            var selected = filterGenre == genre ? ' selected="selected"' : '';
+                            genreHtml += '<option value="' + genre + '"' + selected + '>' + genre + '</option>';
+                        });
+                        jqFilter.html(genreHtml);
+                    }
+
+                    $("#existing-addresses").html(html);
+
+
+                    $("#existing-addresses .lnk-delete").click(function () {
+                        var request = { type: 'delete', url: "address/" + $(this).parent().attr('id') };
+                        restLog("DELETE", request.url);
+                        request.success = refreshExistingMovies;
+                        $.ajax(request);
+                    });
+
+                    $("#existing-addresses .lnk-update").click(function () {
+                        var addressId = $(this).parent().attr('id');
+
+                        restLog("GET", "address/" + addressId);
+                        $.getJSON("address/" + addressId, function (r) {
+                            showDetailsForm(r.Movie);
+                        });
+                    });
+                });
+            };
+
+            $("SELECT[name=genres]").change(function () {
+                refreshExistingMovies();
+            });
+
+            $("#btnReset").click(function () {
+                restLog("POST", "reset-movies");
+                $.post("reset-movies", function (r) {
+                    refreshExistingMovies();
+                });
+            });
+
+            var showDetailsForm = function (updateMovie) {
+                var isUpdate = !!updateMovie;
+                var newMovie =
+                {
+                    Id: 0,
+                    ImdbId: "tt0110912",
+                    Title: "Pulp Fiction",
+                    Rating: 8.9,
+                    Director: "Quentin Tarantino",
+                    ReleaseDate: new Date(1994, 10, 24),
+                    TagLine: "Girls like me don't make invitations like this to just anyone!",
+                    Genres: ["Crime", "Drama", "Thriller"]
+                };
+
+                var movie = updateMovie || newMovie;
+
+                $("FORM INPUT[type=submit]").val(isUpdate ? "Update movie" : "Add new movie");
+                var action = "movies";
+                $("FORM").attr('action', isUpdate ? action + "/" + movie.Id : action);
+                $("FORM").attr('method', isUpdate ? 'PUT' : 'POST');
+
+                var title = isUpdate ? "Update " + movie.Title : "Add a new movie";
+                $("FORM H2").html(title);
+
+                for (var name in movie) {
+                    $("INPUT[name=" + name + "]").val(movie[name]);
+                }
+                var date = typeof movie['ReleaseDate'] == 'string'
+                    ? new Date(parseFloat(/Date\(([^)]+)\)/.exec(movie['ReleaseDate'])[1]))
+                    : movie['ReleaseDate'];
+                $("INPUT[name=ReleaseDate]").val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
+
+                $("FORM").fadeIn('fast');
+            };
+
+            $("#btnAdd").click(function () {
+                showDetailsForm();
+            });
+
+            $('FORM').ajaxForm(function () {
+                restLog($('FORM').attr('method'), $('FORM').attr('action'));
+                $("FORM").hide();
+                refreshExistingMovies();
+            });
+
+            $("#csvformat B").click(function () {
+                restLog("GET", "movies?format=csv");
+                location.href = "movies?format=csv";
+            });
+
+            refreshExistingMovies();
+        });
+    </script>
+</head>
+<body>
+    <div id="existing">
+        &nbsp;<h1>
+            Existing Addresses</h1>
+        <dl id="existing-addresses">
+        </dl>
+        <button id="btnAdd">
+            Add &gt;&gt;</button>
+    </div>
+    <h1>
+        Add a State</h1>
+    <form action="address" method="POST">
+    <dl>
+        <dt>Name:</dt>
+        <dd>
+            <input type="text" name="Name" /></dd>
+        <dt>StateId:</dt>
+        <dd>
+            <input type="text" name="StateId" /></dd>
+        <dt>CountryRegionId:</dt>
+        <dd>
+            <input type="text" name="CountryRegionId" /></dd>
+        <input type="submit" />
+    </dl>
+    </form>
+</body>
 </html>
