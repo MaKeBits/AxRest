@@ -18,7 +18,7 @@ namespace AxRest
             //Register user-defined REST-ful routes         
         Routes
           .Add<Address>("/address")
-          .Add<Address>("/address/{Id}");
+          .Add<Address>("/address/{recId}");
         }
     }
     public class Global : System.Web.HttpApplication

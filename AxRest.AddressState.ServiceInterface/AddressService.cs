@@ -20,9 +20,9 @@ namespace AxRest.AddressState.ServiceInterface
         {
             Addresses addresses = (Addresses)_dal.getListOfAdresses();
 
-            if (!String.IsNullOrEmpty(request.StateId))
+            if (!String.IsNullOrEmpty(request.recId))
             {
-                Address address = addresses.Find(delegate(Address a) { return a.StateId.ToLower() == request.StateId.ToLower(); });
+                Address address = addresses.Find(delegate(Address a) { return a.recId == request.recId; });
                 return address;
             }
 
@@ -45,12 +45,14 @@ namespace AxRest.AddressState.ServiceInterface
 
         public override object OnPut(Address request)
         {
-            return request;
+            _dal.updateAddress(request);
+            return new Address();
         }
 
         public override object OnDelete(Address request)
         {
-            return null;
+            _dal.deleteAddress(request);
+            return new Address();
         }
     }
 }

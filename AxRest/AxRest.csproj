@@ -98,14 +98,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="default.css" />
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
-    <Content Include="jquery-1.4.2.min.js" />
-    <Content Include="jquery.form.js" />
-    <Content Include="jqunback-1.51.min.js" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -23,21 +23,22 @@ namespace AxRest.AddressState.Axapta
             // the AxRecord.get_field method.
             string strNameField = "NAME";
             string strStateIdField = "STATEID";
+            string strRecIdField = "RecId";
 
             // The output variables for calls to the 
             // AxRecord.get_Field method.
-            string fieldName, fieldStateId;
+            string fieldName, fieldStateId, recId;
 
             try
             {
                 // Login to Microsoft Dynamics AX.                
                 ax.Logon(null, null, null, null);
+                ax.Refresh();
 
                 // Create a query using the AxaptaRecord class
                 // for the StateAddress table.
                 using (axRecord = ax.CreateAxaptaRecord(tableName))
                 {
-
                     // Execute the query on the table.
                     string stmt = "select * from %1";
                     axRecord.ExecuteStmt(stmt);
@@ -52,15 +53,17 @@ namespace AxRest.AddressState.Axapta
                         // Retrieve the record data for the specified fields.
                         fieldName = (String)axRecord.get_Field(strNameField);
                         fieldStateId = (String)axRecord.get_Field(strStateIdField);
+                        recId = axRecord.get_Field(strRecIdField).ToString();
 
                         // Display the retrieved data.
                         //Console.WriteLine(fieldName + "\t" + fieldStateId);
 
-                        if (!String.IsNullOrEmpty(fieldName) && !String.IsNullOrEmpty(fieldStateId))
+                        if (!String.IsNullOrEmpty(fieldName) && !String.IsNullOrEmpty(fieldStateId) && !String.IsNullOrEmpty(recId))
                         {
                             Address address = new Address();
                             address.Name = fieldName;
                             address.StateId = fieldStateId;
+                            address.recId = recId;
                             addresses.Add(address);
                         }
 
@@ -73,8 +76,11 @@ namespace AxRest.AddressState.Axapta
 
             catch (Exception e)
             {
-                Console.WriteLine("Error encountered: {0}", e.Message);
-                // Take other error action as needed.
+                throw (e);
+            }
+            finally
+            {
+                ax.Logoff();
             }
 
             return addresses;
@@ -85,13 +91,12 @@ namespace AxRest.AddressState.Axapta
             try
             {
                 // Login to Microsoft Dynamics AX.
-                ax = new Microsoft.Dynamics.BusinessConnectorNet.Axapta();
                 ax.Logon(null, null, null, null);
+                ax.Refresh();
 
                 // Create a new AddressState table record.
                 using (axRecord = ax.CreateAxaptaRecord(tableName))
                 {
-
                     // Provide values for each of the AddressState record fields.
                     axRecord.set_Field("NAME", address.Name);
                     axRecord.set_Field("STATEID", address.StateId);
@@ -105,51 +110,92 @@ namespace AxRest.AddressState.Axapta
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error encountered: {0}", e.Message);
-                // Take other error action as needed.
+                throw (e);
+            }
+            finally
+            {
+                ax.Logoff();
             }
         }
 
         public void updateAddress(Address address)
         {
-            // Create an Axapta record for the StateAddress table.
-            axRecord = ax.CreateAxaptaRecord(tableName);
-
-            // Execute a query to retrieve an editable record where the name is MyState.
-            string stmt = "select forupdate * from %1 where %1.Name == '" + address.Name + "'";
-            axRecord.ExecuteStmt(stmt);
-
-            // If the record is found then update the name.
-            if (axRecord.Found)
+            try
             {
-                // Start a transaction that can be committed.
-                ax.TTSBegin();
-                axRecord.set_Field("Name", "MyStateUpdated");
-                axRecord.Update();
+                // Login to Microsoft Dynamics AX.
+                ax.Logon(null, null, null, null);
+                ax.Refresh();
 
-                // Commit the transaction.
-                ax.TTSCommit();
+                using (axRecord = ax.CreateAxaptaRecord(tableName))
+                {
+
+                    // Execute a query to retrieve an editable record where the name is MyState.
+                    string stmt = "select forupdate * from %1 where %1.RecId == " + address.recId + "";
+                    axRecord.ExecuteStmt(stmt);
+
+                    // If the record is found then update the name.
+                    if (axRecord.Found)
+                    {
+                        // Start a transaction that can be committed.
+                        ax.TTSBegin();
+                        axRecord.set_Field("NAME", address.Name);
+                        axRecord.set_Field("STATEID", address.StateId);
+                        axRecord.set_Field("COUNTRYREGIONID", address.CountryRegionId);
+                        axRecord.set_Field("INTRASTATCODE", "");
+                        axRecord.Update();
+
+                        // Commit the transaction.
+                        ax.TTSCommit();
+                    }
+                }
+                ax.Logoff();
             }
-            ax.Logoff();
+            catch (Exception e)
+            {
+                throw (e);
+            }
+            finally
+            {
+                ax.Logoff();
+            }
         }
 
         public void deleteAddress(Address address)
         {
-            // Execute a query to retrieve an editable record 
-            // where the name is MyStateUpdated.
-            string stmt = "select forupdate * from %1 where %1.Name == '" + address.Name + "'";
-            axRecord.ExecuteStmt(stmt);
-
-            // If the record is found then delete the record.
-            if (axRecord.Found)
+            try
             {
-                // Start a transaction that can be committed.
-                ax.TTSBegin();
-                axRecord.Delete();
-                // Commit the transaction.
-                ax.TTSCommit();
+
+                // Login to Microsoft Dynamics AX.
+                ax.Logon(null, null, null, null);
+                ax.Refresh();
+
+                using (axRecord = ax.CreateAxaptaRecord(tableName))
+                {
+                    // Execute a query to retrieve an editable record 
+                    // where the name is MyStateUpdated.
+                    string stmt = "select forupdate * from %1 where %1.RecId == " + address.recId + "";
+                    axRecord.ExecuteStmt(stmt);
+
+                    // If the record is found then delete the record.
+                    if (axRecord.Found)
+                    {
+                        // Start a transaction that can be committed.
+                        ax.TTSBegin();
+                        axRecord.Delete();
+                        // Commit the transaction.
+                        ax.TTSCommit();
+                    }
+                }
+                ax.Logoff();
             }
-            ax.Logoff();
+            catch (Exception e)
+            {
+                throw (e);
+            }
+            finally
+            {
+                ax.Logoff();
+            }
         }
     }
 }
