@@ -15,7 +15,7 @@
                 if (method == "GET") url = '<a href="' + url + '" target="_blank">' + url + '</a>';
                 $("#restlog").prepend("<div><b class='ib'>" + method + "</b><i>" + url + "</i></div>");
             }
-           
+
             var refreshExistingAddresses = function () {
                 var addressesUrl = "address";
 
@@ -29,7 +29,7 @@
                                  + "<label class='ib'>" + address.Name + "</label>"
                                  + "<span class='ib lnk-update'>update</span>"
                                  + "<span class='ib lnk-delete'>delete</span>"
-                        "</dd>";                                            
+                        "</dd>";
                     }
 
                     $("#existing-addresses").html(html);
@@ -104,8 +104,6 @@
         <button id="btnAdd">
             Add &gt;&gt;</button>
     </div>
-    <h1>
-        Add a State</h1>
     <form action="address" method="POST">
     <dl>
         <dt>Name:</dt>
