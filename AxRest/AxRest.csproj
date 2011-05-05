@@ -106,6 +106,14 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.loading.1.6.4\jquery.loading.1.6.4.js" />
+    <Content Include="Scripts\jquery.loading.1.6.4\jquery.loading.1.6.4.min.js" />
+    <Content Include="Scripts\jquery.loading.1.6.4\jquery.loading.1.6.css" />
+    <Content Include="Scripts\jquery.loading.1.6.4\jquery.loading.1.6.htm" />
+    <Content Include="Scripts\jquery.loading.1.6.4\jquery.loading.overflow.htm" />
+    <Content Include="Scripts\jquery.loading.1.6.4\jquery.loading.overflow.js" />
+    <Content Include="Scripts\jquery.loading.1.6.4\jquery.loading.overflow.min.js" />
+    <Content Include="Scripts\jquery.loading.1.6.4\loading.gif" />
     <Content Include="web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

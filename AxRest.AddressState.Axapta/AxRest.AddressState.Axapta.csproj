@@ -50,6 +50,12 @@
     <Compile Include="DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Chelab.AX2009.Configuration\Chelab.AX2009.Configuration.csproj">
+      <Project>{91BE0F1E-BFB2-4D3B-81A1-1F3D11F75C82}</Project>
+      <Name>Chelab.AX2009.Configuration</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
