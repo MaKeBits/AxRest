@@ -9,16 +9,16 @@ namespace AxRest
 {
     public class AppHost : AppHostBase
     {
-        public AppHost() : base("AxRest Intro", typeof(AddressService).Assembly){}
+        public AppHost() : base("AxRest Intro", typeof(AddressService).Assembly) { }
 
         public override void Configure(Container container)
         {
             container.Register<DAL>(new DAL());
 
             //Register user-defined REST-ful routes         
-        Routes
-          .Add<Address>("/address")
-          .Add<Address>("/address/{recId}");
+            Routes
+              .Add<Address>("/address")
+              .Add<Address>("/address/{recId}");
         }
     }
     public class Global : System.Web.HttpApplication
