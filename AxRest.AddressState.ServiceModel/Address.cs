@@ -15,19 +15,14 @@ namespace AxRest.AddressState.ServiceModel
         public string CountryRegionId { get; set; }
         public string recId { get; set; }
 
-        private string _StateId { get; set; }
-        private string _Name { get; set; }
-        private string _CountryRegionId { get; set; }
-        private string _recId { get; set; }
-
         public Address() { }
 
         public Address(String stateId, String name, String countryRegionId, String recId)
         {
-            this._StateId = stateId;
-            this._Name = name;
-            this._CountryRegionId = countryRegionId;
-            this._recId = recId;
+            this.StateId = stateId;
+            this.Name = name;
+            this.CountryRegionId = countryRegionId;
+            this.recId = recId;
         }
     }
 }
