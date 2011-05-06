@@ -17,62 +17,67 @@ namespace AxRest.AddressState.Axapta
 
         public List<Address> getListOfAdresses()
         {
-            Addresses addresses = new Addresses();
+            Addresses addresses = new Addresses { 
+                new Address("stato1", "name1", "country1", "recid1"),
+                new Address("stato2", "name2", "country2", "recid2")
+                };
 
-            // The AddressState field names for calls to
-            // the AxRecord.get_field method.
-            string strNameField = "NAME";
-            string strStateIdField = "STATEID";
-            string strRecIdField = "RecId";
+            #region MyRegion
+            //// The AddressState field names for calls to
+            //// the AxRecord.get_field method.
+            //string strNameField = "NAME";
+            //string strStateIdField = "STATEID";
+            //string strRecIdField = "RecId";
 
-            // The output variables for calls to the 
-            // AxRecord.get_Field method.
-            string fieldName, fieldStateId, recId;
+            //// The output variables for calls to the 
+            //// AxRecord.get_Field method.
+            //string fieldName, fieldStateId, recId;
 
-            try
-            {
-                AxLogon();
+            //try
+            //{
+            //    AxLogon();
 
-                // Create a query using the AxaptaRecord class
-                // for the StateAddress table.
-                using (axRecord = ax.CreateAxaptaRecord(tableName))
-                {
-                    // Execute the query on the table.
-                    string stmt = "select * from %1";
-                    axRecord.ExecuteStmt(stmt);
+            //    // Create a query using the AxaptaRecord class
+            //    // for the StateAddress table.
+            //    using (axRecord = ax.CreateAxaptaRecord(tableName))
+            //    {
+            //        // Execute the query on the table.
+            //        string stmt = "select * from %1";
+            //        axRecord.ExecuteStmt(stmt);
 
-                    // Loop through the set of retrieved records.
-                    while (axRecord.Found)
-                    {
-                        // Retrieve the record data for the specified fields.
-                        fieldName = (String)axRecord.get_Field(strNameField);
-                        fieldStateId = (String)axRecord.get_Field(strStateIdField);
-                        recId = axRecord.get_Field(strRecIdField).ToString();
+            //        // Loop through the set of retrieved records.
+            //        while (axRecord.Found)
+            //        {
+            //            // Retrieve the record data for the specified fields.
+            //            fieldName = (String)axRecord.get_Field(strNameField);
+            //            fieldStateId = (String)axRecord.get_Field(strStateIdField);
+            //            recId = axRecord.get_Field(strRecIdField).ToString();
 
-                        if (!String.IsNullOrEmpty(fieldName) && !String.IsNullOrEmpty(fieldStateId) && !String.IsNullOrEmpty(recId))
-                        {
-                            Address address = new Address();
-                            address.Name = fieldName;
-                            address.StateId = fieldStateId;
-                            address.recId = recId;
-                            addresses.Add(address);
-                        }
+            //            if (!String.IsNullOrEmpty(fieldName) && !String.IsNullOrEmpty(fieldStateId) && !String.IsNullOrEmpty(recId))
+            //            {
+            //                Address address = new Address();
+            //                address.Name = fieldName;
+            //                address.StateId = fieldStateId;
+            //                address.recId = recId;
+            //                addresses.Add(address);
+            //            }
 
-                        // Advance to the next row.
-                        axRecord.Next();
-                    }
-                }
-                ax.Logoff();
-            }
+            //            // Advance to the next row.
+            //            axRecord.Next();
+            //        }
+            //    }
+            //    ax.Logoff();
+            //}
 
-            catch (Exception e)
-            {
-                throw (e);
-            }
-            finally
-            {
-                ax.Logoff();
-            }
+            //catch (Exception e)
+            //{
+            //    throw (e);
+            //}
+            //finally
+            //{
+            //    ax.Logoff();
+            //} 
+            #endregion
 
             return addresses;
         }
@@ -131,7 +136,7 @@ namespace AxRest.AddressState.Axapta
                     // Execute a query to retrieve an editable record where the name is MyState.
                     string stmt = "select forupdate * from %1 where %1.RecId == " + address.recId + "";
                     axRecord.ExecuteStmt(stmt);
-                    
+
                     updateAxRecord(address);
                 }
                 ax.Logoff();
